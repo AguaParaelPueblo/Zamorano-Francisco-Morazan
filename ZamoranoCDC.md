@@ -66,7 +66,7 @@ The number of tubes are:
 * Orthophosphate: 2
 
 The setup for the CDC in the plant is shown in the drawing below:   
-![CDC](https://photos.app.goo.gl/VoNx5BNjdy32huxY2)
+![CDC](https://photos.google.com/photo/AF1QipMDpq5VlPTUre5C-vhadpM_71Zu13aS-dIltFdn)
 # LFOM
 
 ```python
