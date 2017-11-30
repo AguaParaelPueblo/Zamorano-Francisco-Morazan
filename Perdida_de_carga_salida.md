@@ -1,34 +1,6 @@
 # Calculación de la pérdida de carga en la salida de la planta de Zamorano
 
-```python
-from aide_design.play import *
-from IPython.display import display
-from aide_design import k_value_of_reductions_utility as red
 
-pipe.ID_sch40 = np.vectorize(pipe.ID_sch40)
-pipe.ID_sch40 = np.vectorize(pipe.ID_sch40)
-PVC_ROUGHNESS = mat.PIPE_ROUGH_PVC
-HG_ROUGHNESS = 0.15*(u.mm)
-NU_WATER = exp.NU_WATER
-pipe_sdr = 26
-
-diam_8 = pipe.ID_SDR(8, pipe_sdr)
-diam_10 = pipe.ID_SDR(10,pipe_sdr)
-
-
-```
-La pérdida en la línea de 10":
-```python
-n_elbows_10 = 10
-n_tee_10 = 1
-l_tube = 13.5*(u.m)
-
-k_exit = red.k_value_reduction(diam_8, diam_10, flow) + 5*exp.K_MINOR_EL90 + exp.K_MINOR_TEE_FLOW_RUN
-
-pc.headloss(flow, diam_10, l_tube, NU_WATER, PVC_ROUGHNESS, k_exit)
-
-pc.headloss(flow, )
-```
 ```python
 # %%
 from aide_design.play import *
