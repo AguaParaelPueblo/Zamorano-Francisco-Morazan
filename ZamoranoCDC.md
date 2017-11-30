@@ -6,7 +6,7 @@ The design for Zamorano was produced before the CDC was incorporated into the de
 # %% importing
 from aide_design.play import *
 from aide_design import cdc_functions as cdc
-import collections
+from aide_design.unit_process_design.prefab import lfom_prefab_functional as lfom
 
 #Defining variables (stock concentrations, dosages stolen from Mathcad)
 FlowPlant = 40*u.L/u.s
@@ -52,6 +52,7 @@ print(L_tube_list)
 print(n_tube_list)
 
 ```
+
 All tubes will be 1/8"
 
 The required tube lengths are:
@@ -63,3 +64,29 @@ The number of tubes are:
 * Coagulant: 4
 * Chlorine: 4
 * Orthophosphate: 2
+
+The setup for the CDC in the plant is shown in the drawing below:   
+![CDC](https://photos.app.goo.gl/VoNx5BNjdy32huxY2)
+# LFOM
+
+```python
+# %%
+
+HeadlossLfom = 20*u.cm
+RatioLfomSafety = 1.5
+SdrLfom = 26
+#DrillBits = np.array(0.03125, 0.0625, 0.09375, 0.125, 0.15625, 0.1875, 0.21875, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2)*u.inch
+DrillBits = np.arange(1.75,2,.25)*u.inch
+
+n_rows= lfom.n_lfom_rows(FlowPlant, HeadlossLfom)
+print(n_rows)
+
+NdLfom = lfom.nom_diam_lfom_pipe(FlowPlant, HeadlossLfom, HeadlossLfom, SdrLfom)
+OrificeDiam = lfom.orifice_diameter(FlowPlant, HeadlossLfom, DrillBits)
+LfomOrificeArray = lfom.n_lfom_orifices(FlowPlant, HeadlossLfom, DrillBits, SdrLfom)
+HeightLfomOrifices = lfom.height_lfom_orifices(FlowPlant, HeadlossLfom, DrillBits)
+
+print(OrificeDiam)
+print(LfomOrificeArray)
+print(HeightLfomOrifices)
+```
