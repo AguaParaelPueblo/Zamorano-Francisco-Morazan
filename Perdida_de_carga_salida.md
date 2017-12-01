@@ -58,7 +58,7 @@ plt.grid(True)
 plt.show()
 
 ```
-![graph](images/ExitHeadlossGraph.jpg)
+![graph](images/ExitHeadlossGraph.JPG)
 
 
 
