@@ -1,6 +1,8 @@
-## Chemical Dosing System for Zamorano
+## Sistema de químicos para Zamorano
 
-The design for Zamorano was produced before the CDC was incorporated into the design tool, so we need to design it. Namely, we need to figure out the length, number, and diameter of the small-diameter tubes that compose the hamaca.
+Necesitamos definir las ubicaciónes de los elementos del sistema de dosificación y también los largos de las mangueras de pérdida de carga mayor.
+
+Primero calculo los largos:
 
 ```python
 # %% importing
@@ -8,7 +10,7 @@ from aide_design.play import *
 from aide_design import cdc_functions as cdc
 from aide_design.unit_process_design.prefab import lfom_prefab_functional as lfom
 
-#Defining variables (stock concentrations, dosages stolen from Mathcad)
+#Defining variables (stock concentrations, dosages taken from Mathcad)
 FlowPlant = 40*u.L/u.s
 T = u.Quantity(20,u.degC)
 NuWater = pc.viscosity_kinematic(T)
@@ -52,41 +54,26 @@ print(L_tube_list)
 print(n_tube_list)
 
 ```
+Resultados (toda la manguera es de 1/8"):
 
-All tubes will be 1/8"
+Químico | Largo de las mangueras | Número de mangueras
+------------ | ------------- | ------------------------
+Coagulante | 0.98 m | 4
+Cloro | 1.28 m | 4
+Ortofosfato | 1.01 m | 2
 
-The required tube lengths are:
-* Coagulant: 0.98 m
-* Chlorine: 1.28 m
-* Orthophosphate: 1.01 m
 
-The number of tubes are:
-* Coagulant: 4
-* Chlorine: 4
-* Orthophosphate: 2
+Ahora, las ubicaciones:
 
-The setup for the CDC in the plant is shown in the drawing below:   
-![CDC](https://photos.google.com/photo/AF1QipMDpq5VlPTUre5C-vhadpM_71Zu13aS-dIltFdn)
-# LFOM
+La hamaca y los botes de carga constante van en la pared al fin del paseo. Arriba de la ventana en el piso, justo abajo de la viga va otra ventana. Allí van a pasar los drenajes de los tanques y  la tubería hacia los botes, los cuales van a estar en el rincón para no estorbar el paseo. Todo el espacio entre la ventana y el otro pared debe de llevar cerámica.   
 
-```python
-# %%
+Despues de la hamaca la tubería pasa por un tubo de 3" abajo del tubo de entrada hasta la balanza. Van 4 tubos: los 3 a la balanza para dosificación y un cuarto para llevar el cloro a la salida.
 
-HeadlossLfom = 20*u.cm
-RatioLfomSafety = 1.5
-SdrLfom = 26
-#DrillBits = np.array(0.03125, 0.0625, 0.09375, 0.125, 0.15625, 0.1875, 0.21875, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.25, 1.5, 1.75, 2)*u.inch
-DrillBits = np.arange(1.75,2,.25)*u.inch
+Para pasar los químicos de la balanza a la mezcla rápida sugiero dejar un pedazo de tubo de 3" en la pared en el espacio abierto abajo del pendiente que forma el piso del tanque de entrada. Si no es posible también podemos pasar la manguera encima de la pared del flocculador y luego a la mezcla rápida.
 
-n_rows= lfom.n_lfom_rows(FlowPlant, HeadlossLfom)
-print(n_rows)
 
-NdLfom = lfom.nom_diam_lfom_pipe(FlowPlant, HeadlossLfom, HeadlossLfom, SdrLfom)
-OrificeDiam = lfom.orifice_diameter(FlowPlant, HeadlossLfom, DrillBits)
-LfomOrificeArray = lfom.n_lfom_orifices(FlowPlant, HeadlossLfom, DrillBits, SdrLfom)
-HeightLfomOrifices = lfom.height_lfom_orifices(FlowPlant, HeadlossLfom, DrillBits)
+![CDC1](images/DSC_0288.JPG)
 
-print(OrificeDiam)
-print(LfomOrificeArray)
-print(HeightLfomOrifices)
-```
+![CDC2](images/DSC_0289.JPG)
+
+![CDC3](images/DSC_0290.JPG)
