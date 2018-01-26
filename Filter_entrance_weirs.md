@@ -4,7 +4,7 @@ Mysteriously, the control slot weir in Zamorano is considerably smaller than tha
 
 The goal is to have the height of water behind that weir in a given filter be equal to the height of the first entrance weir when the flow rate entering that filter is 1.15 the design flow rate. That height is 52.7 cm, as shown below:
 
-![entrance_weirs_zamorano](images/entrance_weirs_zamorano.JPG)]
+![entrance_weirs_zamorano](images/entrance_weirs_zamorano.JPG)
 
 ```python
 # %%
