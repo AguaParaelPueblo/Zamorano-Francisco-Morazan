@@ -1,10 +1,10 @@
-#Filter Entrance Weirs Head Loss Check
+# Filter Entrance Weirs Head Loss Check
 
 Mysteriously, the control slot weir in Zamorano is considerably smaller than that in Las Vegas. I want to check that the head loss through it is what it should be.
 
 The goal is to have the height of water behind that weir in a given filter be equal to the height of the first entrance weir when the flow rate entering that filter is 1.15 the design flow rate. That height is 52.7 cm, as shown below:
 
-![entrance_weirs_zamorano](images/entrance_weirs_zamorano.JPG)
+![entrance_weirs_zamorano](images/entrance_weirs_zamorano.jpg)
 
 ```python
 # %%
